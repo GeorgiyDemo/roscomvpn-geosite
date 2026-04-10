@@ -1,0 +1,72 @@
+name: Sync v2fly IP checkers upstream
+
+on:
+  schedule:
+    # Weekly: Monday 05:43 UTC. v2fly doesn't update daily,
+    # weekly cadence avoids churn. Manual trigger also available.
+    - cron: "43 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Fetch v2fly category-ip-geo-detect and commit if changed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git identity
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch v2fly upstream with includes resolved
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/v2fly && mkdir -p /tmp/v2fly
+          BASE="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+
+          fetch() {
+            local name="$1"
+            local dest="/tmp/v2fly/$name"
+            [ -f "$dest" ] && return 0
+            echo "  fetching $name"
+            curl -fsSL --retry 3 --retry-delay 2 "$BASE/$name" -o "$dest"
+            grep -oE '^include:[a-z0-9_-]+' "$dest" 2>/dev/null \
+              | sed 's|^include:||' \
+              | while read -r inc; do fetch "$inc"; done
+          }
+
+          fetch category-ip-geo-detect
+          echo "Fetched files:"
+          ls -la /tmp/v2fly
+
+          # Flatten: concatenate all fetched files, strip include: lines and blanks
+          {
+            echo "# Auto-synced from v2fly/domain-list-community"
+            echo "# Source: https://github.com/v2fly/domain-list-community/blob/master/data/category-ip-geo-detect"
+            echo "# Managed by .github/workflows/sync-v2fly-ip-checkers.yml — DO NOT edit manually"
+            echo ""
+            for f in /tmp/v2fly/*; do
+              echo "# ---- from v2fly data/$(basename "$f") ----"
+              grep -v '^include:' "$f" | grep -v '^[[:space:]]*$' || true
+              echo ""
+            done
+          } > data/category-ip-geo-detect-upstream
+
+      - name: Commit if content changed
+        run: |
+          git add data/category-ip-geo-detect-upstream
+          if git diff --staged --quiet; then
+            echo "::notice::No upstream changes — fork already in sync with v2fly"
+            exit 0
+          fi
+          git commit -m "sync: v2fly category-ip-geo-detect $(date -u +%Y-%m-%d)"
+          git push origin master
+          echo "::notice::Pushed upstream sync — Build geosite will rebuild release"

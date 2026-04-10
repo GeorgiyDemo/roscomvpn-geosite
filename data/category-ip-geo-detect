@@ -1,6 +1,20 @@
 # IP checker / geolocation / browser fingerprint / DNS-leak test sites
 # Used by KoshkaProject to route through DIRECT so VPN exit IP isn't exposed.
-# Source: v2fly category-ip-geo-detect + supplementary (fingerprint tests + VPN vendors)
+#
+# Layout:
+#   1) v2fly upstream category-ip-geo-detect — auto-synced weekly by
+#      .github/workflows/sync-v2fly-ip-checkers.yml into
+#      data/category-ip-geo-detect-upstream
+#   2) KoshkaProject supplementary additions — maintained manually below
+
+# ==============================================================
+# v2fly upstream (auto-synced)
+# ==============================================================
+include:category-ip-geo-detect-upstream
+
+# ==============================================================
+# KoshkaProject supplementary additions
+# ==============================================================
 
 # ---- Global IP echo / plain-text IP APIs ----
 domain:curlmyip.net
@@ -170,9 +184,54 @@ domain:ipligence.com
 domain:ipleak.net
 domain:pixelscan.net
 
+# ---- Modern fingerprint / anonymity verification (2026-04) ----
+domain:fingerprint.com
+domain:fingerprintjs.com
+domain:abrahamjuliot.github.io
+domain:privacytests.org
+domain:botd.fpjs.io
+domain:whatleaks.com
+domain:doileak.com
+domain:whatismybrowser.com
+domain:f.vision
+domain:browserspy.dk
+domain:clickclickclick.click
+domain:nothingprivate.ml
+
+# ---- IPv6 / WebRTC leak tests ----
+domain:test-ipv6.com
+domain:ipv6-test.com
+domain:ipv6leak.com
+
+# ---- Asian IP checkers ----
+domain:ip138.com
+domain:ip.cn
+domain:whatismyip.cn
+domain:ip.tool.chinaz.com
+
+# ---- Additional misc ----
+domain:my-ip.io
+domain:ipleak.com
+domain:whatismyipaddress.ru
+domain:ipgeolocation.com
+domain:httpheader.net
+
 # ---- VPN vendor 'what-is-my-ip' pages ----
 domain:expressvpn.com
 domain:mullvad.net
 domain:nordvpn.com
 domain:protonvpn.com
 domain:surfshark.com
+domain:cyberghostvpn.com
+domain:privateinternetaccess.com
+domain:windscribe.com
+domain:hide.me
+domain:ivpn.net
+domain:torguard.net
+domain:ipvanish.com
+domain:atlasvpn.com
+domain:tunnelbear.com
+domain:airvpn.org
+domain:hidemy.name
+domain:astrill.com
+domain:vpnapi.io
