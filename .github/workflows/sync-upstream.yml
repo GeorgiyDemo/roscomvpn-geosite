@@ -1,0 +1,57 @@
+name: Sync with upstream
+
+on:
+  schedule:
+    # Каждый день в 04:17 UTC — после того как upstream успеет отбилдить
+    # свой daily release (у них билды происходят на push в master).
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Fast-forward from hydraponique/roscomvpn-geosite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/hydraponique/roscomvpn-geosite.git
+          git fetch upstream master
+
+      - name: Merge upstream/master
+        id: merge
+        run: |
+          set -e
+          BEFORE=$(git rev-parse HEAD)
+          # Merge without editing message; keep our local files (category-ip-geo-detect, this workflow)
+          # since they don't exist upstream, merge is a pure fast-forward of their commits.
+          git merge --no-edit upstream/master || {
+            echo "merge_failed=true" >> "$GITHUB_OUTPUT"
+            exit 1
+          }
+          AFTER=$(git rev-parse HEAD)
+          if [ "$BEFORE" = "$AFTER" ]; then
+            echo "already_up_to_date=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Fork already in sync with upstream"
+          else
+            echo "new_commits=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Fast-forwarded from $BEFORE to $AFTER"
+          fi
+
+      - name: Push to origin
+        if: steps.merge.outputs.new_commits == 'true'
+        run: git push origin master
