@@ -235,3 +235,75 @@ domain:airvpn.org
 domain:hidemy.name
 domain:astrill.com
 domain:vpnapi.io
+
+# ---- IP lookup / WHOIS / reputation services ----
+# NOTE: these expose IP AND allow searching other IPs. Routing them to
+# DIRECT means your own lookup queries also bypass VPN — acceptable
+# tradeoff here since the user wants maximum coverage.
+domain:shodan.io
+domain:censys.io
+domain:abuseipdb.com
+domain:ipvoid.com
+domain:mxtoolbox.com
+domain:viewdns.info
+domain:securitytrails.com
+domain:criminalip.io
+domain:scamalytics.com
+domain:robtex.com
+domain:dnsstuff.com
+domain:centralops.net
+domain:network-tools.com
+domain:whoxy.com
+domain:whois.com
+domain:who.is
+domain:lookup.icann.org
+domain:domaintools.com
+
+# ---- Speedtest services that prominently show IP ----
+# NOTE: speedtest.net (Ookla) and fast.com (Netflix) are EXCLUDED on
+# purpose — users legitimately run those to measure VPN throughput.
+# Only niche/secondary speedtest sites included here.
+domain:speedof.me
+domain:nperf.com
+domain:testmy.net
+domain:bandwidthplace.com
+domain:waveform.com
+domain:librespeed.org
+domain:speedsmart.net
+domain:dslreports.com
+domain:speedcheck.org
+domain:speedtest.by
+domain:speedtest.kz
+full:speed.cloudflare.com
+
+# ---- TLS / JA3 / ClientHello fingerprint ----
+domain:ja3er.com
+domain:tls.peet.ws
+domain:tlsfingerprint.io
+domain:client.tlsfingerprint.io
+
+# ---- Tor / anonymity network checks ----
+full:check.torproject.org
+
+# ---- User-Agent / HTTP headers reveal ----
+domain:useragentstring.com
+domain:whatsmyua.info
+domain:whatismyreferer.com
+domain:myuseragent.org
+
+# ---- Extra RU / SNG IP tools ----
+domain:2ip.space
+domain:myiptest.ru
+domain:seolik.ru
+domain:host-tracker.com
+domain:hostiman.ru
+
+# ---- Extra global IP info / geolocation (niche) ----
+domain:ipaddressguide.com
+domain:ipfingerprints.com
+domain:ipinfodb.com
+domain:geobytes.com
+domain:ipfeed.com
+domain:trackip.net
+domain:ip.gs
+domain:ip.plus
