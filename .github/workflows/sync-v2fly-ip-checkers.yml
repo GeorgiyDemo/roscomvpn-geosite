@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout fork
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: master
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +40,7 @@ jobs:
             curl -fsSL --retry 3 --retry-delay 2 "$BASE/$name" -o "$dest"
             grep -oE '^include:[a-z0-9_-]+' "$dest" 2>/dev/null \
               | sed 's|^include:||' \
-              | while read -r inc; do fetch "$inc"; done
+              | while read -r inc; do fetch "$inc"; done || true
           }
 
           fetch category-ip-geo-detect
