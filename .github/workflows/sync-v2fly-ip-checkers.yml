@@ -2,9 +2,8 @@ name: Sync v2fly IP checkers upstream
 
 on:
   schedule:
-    # Weekly: Monday 05:43 UTC. v2fly doesn't update daily,
-    # weekly cadence avoids churn. Manual trigger also available.
-    - cron: "43 5 * * 1"
+    # Daily 05:43 UTC — after sync-upstream (04:17) so both sources stay fresh.
+    - cron: "43 5 * * *"
   workflow_dispatch:
 
 permissions:
