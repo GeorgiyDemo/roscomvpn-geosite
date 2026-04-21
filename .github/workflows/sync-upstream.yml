@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout fork
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: master
           fetch-depth: 0
@@ -37,9 +37,9 @@ jobs:
         run: |
           set -e
           BEFORE=$(git rev-parse HEAD)
-          # Merge without editing message; keep our local files (category-ip-geo-detect, this workflow)
-          # since they don't exist upstream, merge is a pure fast-forward of their commits.
-          git merge --no-edit upstream/master || {
+          # release/ contains binary build artifacts that diverge between fork and upstream.
+          # Accept upstream's version on conflict — our build workflow regenerates them anyway.
+          git merge --no-edit -X theirs upstream/master || {
             echo "merge_failed=true" >> "$GITHUB_OUTPUT"
             exit 1
           }
