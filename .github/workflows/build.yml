@@ -76,10 +76,13 @@ jobs:
           cp -f /tmp/out/dlc.dat ./geosite.dat
 
       - name: Install Mihomo (latest stable)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           ARCH=$(dpkg --print-architecture)
-          LATEST_URL=$(${{ env.CURL }} https://api.github.com/repos/MetaCubeX/mihomo/releases/latest \
+          LATEST_URL=$(${{ env.CURL }} -H "Authorization: Bearer $GH_TOKEN" \
+            https://api.github.com/repos/MetaCubeX/mihomo/releases/latest \
             | grep -oP '"browser_download_url":\s*"\K[^"]*mihomo-linux-'"$ARCH"'-[^"]*\.deb(?=")' \
             | head -n1)
           echo "Downloading: $LATEST_URL"
