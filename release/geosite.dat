@@ -117,13 +117,14 @@ tiktokw.ustlivecdn.com
 tmdb.orgtruthsocial.comttlivecdn.comvans.wbgames.comweather.com
 workos.com	xerox.com
 zapier.comzendesk.com62(^|\.)apiproxy-device-prod-nlb-.+\.amazonaws\.com$73(^|\.)apiproxy-website-nlb-prod-.+\.amazonaws\.com$1-(^|\.)dualstack\.apiproxy-.+\.amazonaws\.com$40(^|\.)dualstack\.ichnaea-web-.+\.amazonaws\.com$=9^chatgpt-async-webps-prod-\S+-\d+\.webpubsub\.azure\.com$
-÷0
+ı0
 CATEGORY-IP-GEO-DETECT
 2ip.io
 2ip.ru	2ip.space
 2ip.ua51degrees.comabrahamjuliot.github.ioabstractapi.comabuseipdb.com
 addr.tools
-airvpn.orgamiunique.org	apiip.netapivoid.comastrill.comatlasvpn.combandwidthplace.combigdatacloud.netbot.sannysoft.combotd.fpjs.iobrowserleaks.combrowserscan.netbrowserspy.dk	censys.iocentralops.netcheck-host.netcheckip.amazonaws.comcheckip.com.vncheckip.dyndns.orgcheckip.org
+airvpn.orgamiunique.org	apiip.netapivoid.comastrill.comatlasvpn.combandwidthplace.com
+bgp.he.net	bgp.toolsbigdatacloud.netbot.sannysoft.combotd.fpjs.iobrowserleaks.combrowserscan.netbrowserspy.dk	censys.iocentralops.netcheck-host.netcheckip.amazonaws.comcheckip.com.vncheckip.dyndns.orgcheckip.org
 checkip.ru
 checkip.shcheckmyip.nowclickclickclick.click
 country.iscoveryourtracks.eff.orgcriminalip.iocurlmyip.netcyberghostvpn.com	dadata.ru	db-ip.comdeviceinfo.mednschecker.orgdnsleaktest.comdnsstuff.comdoileak.comdomaintools.comdslreports.comexpressvpn.comextreme-ip-lookup.comf.visionfind-my-ip.comfind-my-ip.net
@@ -165,12 +166,13 @@ testmy.netthatsmyip.comtls.peet.wstlsfingerprint.io
 wgetip.comwhatismybrowser.comwhatismyip.cnwhatismyip.comwhatismyip.iowhatismyip.netwhatismyip.orgwhatismyipaddress.comwhatismyipaddress.netwhatismyipaddress.ruwhatismyisp.comwhatismyreferer.comwhatismyv6.comwhatleaks.comwhatsmyip.comwhatsmyip.orgwhatsmyua.infowhere-am-i.co
 who.is	whoer.netwhoerip.com	whois.comwhois.pconline.com.cn!whois.pconline.com.cn
 cnwhoisxmlapi.com	whoxy.comwieistmeineip.dewindscribe.comwtfismyip.comcheck.torproject.orgcheckip.dyn.comcheckip.global.api.aws&"ip-check-perf.radar.cloudflare.comip.comss.netmyip.dnsomatic.comspeed.cloudflare.comwhatismyip.akamai.com
-ç!
+¨!
 CATEGORY-IP-GEO-DETECT-UPSTREAM
 2ip.io
 2ip.ru
 2ip.ua51degrees.comabstractapi.com
-addr.tools	apiip.netapivoid.combigdatacloud.netbrowserleaks.comcheck-host.netcheckip.com.vncheckip.org
+addr.tools	apiip.netapivoid.com
+bgp.he.net	bgp.toolsbigdatacloud.netbrowserleaks.comcheck-host.netcheckip.com.vncheckip.org
 checkip.ru
 checkip.shcheckmyip.now
 country.iscriminalip.iocurlmyip.net	dadata.ru	db-ip.comdnsleaktest.comextreme-ip-lookup.comfind-my-ip.comfind-my-ip.net
